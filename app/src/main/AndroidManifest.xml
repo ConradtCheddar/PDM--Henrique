@@ -13,7 +13,7 @@
         android:theme="@style/Theme.App"
         tools:targetApi="31">
         <activity
-            android:name=".ImcResultado"
+            android:name=".TabuadaResultado"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

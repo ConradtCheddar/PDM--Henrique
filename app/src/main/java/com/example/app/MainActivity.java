@@ -13,8 +13,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    Button button;
-    EditText edPeso, edAltura;
+    Button Botao;
+    EditText editNumero;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -22,15 +22,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        button = findViewById(R.id.button);
-        edPeso=findViewById(R.id.editpeso);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(this,ImcResultado.class);
+        Botao = findViewById(R.id.Botao);
+        editNumero =findViewById(R.id.editNumero);
+        Botao.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TabuadaResultado.class);
             Bundle bundle = new Bundle();
-            double peso = Double.parseDouble(edPeso.getText().toString());
-            double altura = Double.parseDouble(edAltura.getText().toString());
-            bundle.putDouble("peso",peso);
-            bundle.putDouble("altura", altura);
+            double numero = Double.parseDouble(editNumero.getText().toString());
+            bundle.putInt("Numero", (int) numero);
             intent.putExtras(bundle);
             startActivity(intent);
         });
