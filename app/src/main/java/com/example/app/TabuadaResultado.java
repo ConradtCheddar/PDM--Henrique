@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class TabuadaResultado extends AppCompatActivity {
 
+    // o codigo mais porco de toda a minha vida, me sinto invergonhado
+
     @SuppressLint("MissingInflatedId")
     TextView Vezes1, Vezes2, Vezes3, Vezes4, Vezes5, Vezes6, Vezes7, Vezes8, Vezes9, Vezes10;
 
@@ -35,9 +37,27 @@ public class TabuadaResultado extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         double numero = bundle.getDouble("Numero");
-        for (int i = 1; i < 11; i++) {
+        double V1 = numero * 1;
+        double V2 = numero * 2;
+        double V3 = numero * 3;
+        double V4 = numero * 4;
+        double V5 = numero * 5;
+        double V6 = numero * 6;
+        double V7 = numero * 7;
+        double V8 = numero * 8;
+        double V9 = numero * 9;
+        double V10 = numero * 10;
+        Vezes1.setText(Integer.toString((int) V1));
+        Vezes2.setText(Integer.toString((int) V2));
+        Vezes3.setText(Integer.toString((int) V3));
+        Vezes4.setText(Integer.toString((int) V4));
+        Vezes5.setText(Integer.toString((int) V5));
+        Vezes6.setText(Integer.toString((int) V6));
+        Vezes7.setText(Integer.toString((int) V7));
+        Vezes8.setText(Integer.toString((int) V8));
+        Vezes9.setText(Integer.toString((int) V9));
+        Vezes10.setText(Integer.toString((int) V10));
 
-        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

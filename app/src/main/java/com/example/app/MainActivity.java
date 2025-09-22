@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TabuadaResultado.class);
             Bundle bundle = new Bundle();
             double numero = Double.parseDouble(editNumero.getText().toString());
-            bundle.putInt("Numero", (int) numero);
+            bundle.putDouble("Numero", numero);
             intent.putExtras(bundle);
             startActivity(intent);
         });
