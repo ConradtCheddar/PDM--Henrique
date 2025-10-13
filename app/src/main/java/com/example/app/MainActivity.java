@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,11 +21,9 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<String> nomes;
-
     ListView listview;
-    Button button;
-    EditText editText;
+
+    PlanetaController controller;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -33,22 +32,9 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         listview = findViewById(R.id.listview);
-        button = findViewById(R.id.button);
-        editText = findViewById(R.id.editText);
-        nomes = new ArrayList<String>(Arrays.asList("Sigma", "Beta", "Omega"));
+        controller = new PlanetaController();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, nomes);
-        listview.setAdapter(adapter);
-        listview.setOnClickListener( v ->{
-            nomes.add(editText.getText().toString());
-            adapter.notifyDataSetChanged();
-        });
-        listview.setOnItemLongClickListener((parent,view,position,id)->{
-            nomes.remove(position);
-            adapter.notifyDataSetChanged();
-            return true;
-        });
-
+                android.R.layout.simple_list_item_1, controller);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
