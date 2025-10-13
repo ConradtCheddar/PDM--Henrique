@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
         listview = findViewById(R.id.listview);
         button = findViewById(R.id.button);
         editText = findViewById(R.id.editText);
-        nomes = new ArrayList<>(Arrays.asList("Sigma", "Beta", "Omega"));
+        nomes = new ArrayList<String>(Arrays.asList("Sigma", "Beta", "Omega"));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,android.R.id.text1, nomes);
+                android.R.layout.simple_list_item_1, nomes);
         listview.setAdapter(adapter);
         listview.setOnClickListener( v ->{
             nomes.add(editText.getText().toString());
-            adapter.notifyDataSetChanged();-
+            adapter.notifyDataSetChanged();
         });
         listview.setOnItemLongClickListener((parent,view,position,id)->{
             nomes.remove(position);
