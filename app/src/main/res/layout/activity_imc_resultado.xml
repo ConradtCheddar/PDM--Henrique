@@ -7,24 +7,39 @@
     android:layout_height="match_parent"
     tools:context=".ImcResultado">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <TextView
+        android:id="@+id/Titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultado"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:text="IMC"
+        app:layout_constraintBottom_toTopOf="@+id/Resultado"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="193dp" />
 
     <TextView
-        android:id="@+id/resultado"
+        android:id="@+id/Resultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/descrição"
+        app:layout_constraintTop_toBottomOf="@+id/Titulo"
+        tools:layout_editor_absoluteX="196dp" />
+
+    <TextView
+        android:id="@+id/descrição"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/Resultado"
+        tools:layout_editor_absoluteX="200dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descrição"
+        app:srcCompat="@drawable/perfil"
+        tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,18 +22,47 @@ public class ImcResultado extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_imc_resultado);
-        resultado = findViewById(R.id.resultado);
-        imageView = findViewById(R.id.imageView2);
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        double peso = bundle.getDouble("peso");
-        double altura = bundle.getDouble("altura");
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        Bundle bundle=getIntent().getExtras();
+        Double peso= bundle.getDouble("peso");
+        Double altura= bundle.getDouble("altura");
+        Double imc=(peso/(altura*altura));
+
+        TextView tvIMC =findViewById(R.id.Resultado);
+        TextView tvDescricao =findViewById(R.id.descrição);
+        ImageView imageView=findViewById(R.id.imageView3);
+
+
+        // Definindo o valor do IMC no TextView
+        tvIMC.setText(String.format("%.2f", imc)+" kg/m²");
+/*
+IMC abaixo de 18,5: Abaixo do peso
+IMC entre 18,5 e 24,9: Peso normal
+IMC entre 25 e 29,9: Sobrepeso
+IMC entre 30 e 34,9: Obesidade grau 1
+IMC entre 35 e 39,9: Obesidade grau 2
+IMC acima de 40: Obesidade grau 3
+ */
+        if (imc<18.5){
+            tvDescricao.setText("Abaixo do peso");
+            imageView.setImageResource(R.drawable.abaixopeso);
+        }else if (imc>=18.5 && imc<=24.9){
+            tvDescricao.setText("Peso normal");
+            imageView.setImageResource(R.drawable.normal);
+        }else if (imc>=25 && imc<=29.9){
+            tvDescricao.setText("Sobrepeso");
+            imageView.setImageResource(R.drawable.sobrepeso);
+        }else if (imc>=30 && imc<=34.9){
+            tvDescricao.setText("Obesidade grau 1");
+            imageView.setImageResource(R.drawable.obesidade1);
+        }else if (imc>=35 && imc<=39.9){
+            tvDescricao.setText("Obesidade grau 2");
+            imageView.setImageResource(R.drawable.obesidade2);
+        }else {
+            tvDescricao.setText("Obesidade grau 3");
+            imageView.setImageResource(R.drawable.obesidade3);
+        }
+
+
     }
 }

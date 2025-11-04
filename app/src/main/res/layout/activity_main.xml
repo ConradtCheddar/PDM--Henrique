@@ -67,6 +67,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@drawable/perfil" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
