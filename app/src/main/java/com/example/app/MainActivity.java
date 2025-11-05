@@ -21,24 +21,53 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView listview;
+    ArrayList<String> nomes = new ArrayList<>(Arrays.asList("eu", "voce"));
+    ListView listView;
+    Button button;
 
-    PlanetaController controller;
+    EditText editText;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        listview = findViewById(R.id.listview);
-        controller = new PlanetaController();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, controller);
+
+        listView = findViewById(R.id.listview);
+        button = findViewById(R.id.button);
+        editText = findViewById(R.id.editText);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, android.R.id.text1, nomes);
+        listView.setAdapter(adapter);
+//        listView.setOnItemClickListener((parent, view, position, id) -> {
+//            Toast.makeText(getApplicationContext(), nomes.get(position), Toast.LENGTH_LONG).show();
+//        });
+
+        button.setOnClickListener(v -> {
+            String i = String.valueOf(editText.getText());
+            nomes.add(i);
+            adapter.notifyDataSetChanged();
+            editText.setText("");
+        });
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            new android.app.AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Excluir item")
+                    .setMessage("Deseja realmente excluir \"" + nomes.get(position) + "\"?")
+                    .setPositiveButton("Sim", (dialog, which) -> {
+                        nomes.remove(position);
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(getApplicationContext(), "Item excluído", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Não", null)
+                    .show();
+        });
+
     }
 }
