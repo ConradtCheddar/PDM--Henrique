@@ -11,35 +11,44 @@
         android:id="@+id/Titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="IMC"
-        app:layout_constraintBottom_toTopOf="@+id/Resultado"
+        android:text="Resultado do IMC"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="193dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
 
     <TextView
         android:id="@+id/Resultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
-        app:layout_constraintBottom_toTopOf="@+id/descrição"
+        android:textSize="32sp"
         app:layout_constraintTop_toBottomOf="@+id/Titulo"
-        tools:layout_editor_absoluteX="196dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
 
     <TextView
-        android:id="@+id/descrição"
+        android:id="@+id/descricao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/Resultado"
-        tools:layout_editor_absoluteX="200dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/descricao"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descrição"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/perfil"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_marginTop="24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

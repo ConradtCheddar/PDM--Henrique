@@ -1,44 +1,62 @@
 package com.example.app;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import android.widget.ImageView;
+import android.widget.Toast;
+import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
-    Button button;
-    EditText edPeso, edAltura;
 
-    @SuppressLint("MissingInflatedId")
+    private EditText editPeso, editAltura;
+    private Button buttonCalcular;
+    private ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        button = findViewById(R.id.button);
-        edPeso=findViewById(R.id.editpeso);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(this,ImcResultado.class);
-            Bundle bundle = new Bundle();
-            double peso = Double.parseDouble(edPeso.getText().toString());
-            double altura = Double.parseDouble(edAltura.getText().toString());
-            bundle.putDouble("peso",peso);
-            bundle.putDouble("altura", altura);
-            intent.putExtras(bundle);
-            startActivity(intent);
-        });
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        editPeso = findViewById(R.id.editpeso);
+        editAltura = findViewById(R.id.editaltura);
+        buttonCalcular = findViewById(R.id.button);
+        imageView = findViewById(R.id.imageView);
+
+        buttonCalcular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pesoStr = editPeso.getText().toString();
+                String alturaStr = editAltura.getText().toString();
+
+                imageView.setImageResource(R.drawable.perfil);
+
+                if (pesoStr.isEmpty() || alturaStr.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                try {
+                    double peso = Double.parseDouble(pesoStr);
+                    double altura = Double.parseDouble(alturaStr);
+
+                    if (altura <= 0) {
+                        Toast.makeText(MainActivity.this, "Altura inválida!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    double imc = peso / (altura * altura);
+
+                    Intent intent = new Intent(MainActivity.this, ImcResultado.class);
+                    intent.putExtra("IMC_RESULT", imc);
+                    startActivity(intent);
+
+                } catch (NumberFormatException e) {
+                    Toast.makeText(MainActivity.this, "Digite apenas números válidos!", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
     }
 }
