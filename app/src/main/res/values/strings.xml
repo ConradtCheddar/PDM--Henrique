@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">App</string>
-    <string name="hello">hello lost world</string>
+    <string name="hello">touch to start couting</string>
 </resources>
