@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 public class PlanetaAdapter extends ArrayAdapter<Planeta> {
+
     int mResource;
     public PlanetaAdapter(Context context, int resource,List<Planeta> objects) {
         super(context, resource, objects);
@@ -23,12 +24,13 @@ public class PlanetaAdapter extends ArrayAdapter<Planeta> {
     @NonNull
     @Override
     public View getView(int position, @NonNull View convertView, @NonNull ViewGroup parent){
-        LayoutInflater inflation = LayoutInflater.from(getContext());
-        View v = inflation.inflate(mResource, parent, false);
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        View v = layoutInflater.inflate(mResource,parent,false);
         Planeta planeta = getItem(position);
-        TextView textView = v.findViewById(R.id.textView2);
-        ImageView imageView = v.findViewById(R.id.imageView);
-        textView.setText(Planeta.nome);
+        TextView tv = v.findViewById(R.id.textView);
+        ImageView iv = v.findViewById(R.id.imageView);
+        tv.setText(planeta.nome);
+        iv.setImageResource(planeta.foto);
         return v;
     }
 

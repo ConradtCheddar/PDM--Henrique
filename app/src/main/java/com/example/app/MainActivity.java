@@ -21,9 +21,9 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView listview;
+    ListView listView;
 
-    PlanetaController controller;
+    PlanetaController planetaController;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        listview = findViewById(R.id.listview);
-        controller = new PlanetaController();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, controller);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        listView = findViewById(R.id.listview);
+        planetaController = new PlanetaController();
+
+        PlanetaAdapter adapter = new PlanetaAdapter(this,
+                R.layout.item_lista,
+                planetaController.getPlaneta());
+
+        listView.setAdapter(adapter);
     }
 }
