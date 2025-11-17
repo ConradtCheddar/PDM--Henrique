@@ -2,6 +2,7 @@ package com.example.app;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -21,15 +22,17 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
     Button button;
-    EditText editText;
+    EditText editTitulo,editNome;
     ListView listView;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        button = findViewById(R.id.button);
-        editText = findViewById(R.id.editText);
+        button = findViewById(R.id.aperte);
+        editNome = findViewById(R.id.editNome);
+        editTitulo = findViewById(R.id.editTitulo);
         listView = findViewById(R.id.listView);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -44,18 +47,14 @@ public class MainActivity extends AppCompatActivity {
         carregarListagem();
 
         button.setOnClickListener(v -> {
-            String titulo = editText.getText().toString();
+            String titulo = editTitulo.getText().toString();
+            String nome = editNome.getText().toString();
             ContentValues cv = new ContentValues();
             cv.put("titulo", titulo);
+            cv.put("txt", nome);
             db.insert("notas",null, cv);
             carregarListagem();
         });
-
-        listView.setOnItemClickListener(((parent, view, position, id) ->{
-            Bundle bundle = new Bundle();
-            String item = listView.getItemAtPosition(position).toString();
-            bundle.putString("item", item);
-        }));
     }
 
     public void carregarListagem() {
@@ -76,6 +75,15 @@ public class MainActivity extends AppCompatActivity {
         );
 
         listView.setAdapter(titulosAdapter);
+
+        listView.setOnItemClickListener(((parent, view, position, id) ->{
+            Intent intent = new Intent(this, MainActivity2.class);
+            Bundle bundle = new Bundle();
+            String item = listView.getItemAtPosition(position).toString();
+            bundle.putString("item", item);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }));
     }
 
 }

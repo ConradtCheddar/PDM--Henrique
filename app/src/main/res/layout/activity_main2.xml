@@ -8,16 +8,41 @@
     tools:context=".MainActivity2">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="360dp"
-        android:layout_height="375dp"
+        android:id="@+id/textTitulo"
+        android:layout_width="411dp"
+        android:layout_height="137dp"
+        android:layout_marginTop="120dp"
         android:text="Beta"
         android:textAlignment="center"
         android:textSize="96sp"
+        app:layout_constraintBottom_toTopOf="@+id/textNome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textNome"
+        android:layout_width="411dp"
+        android:layout_height="137dp"
+        android:text="Beta"
+        android:textAlignment="center"
+        android:textSize="96sp"
+        app:layout_constraintBottom_toTopOf="@+id/voltar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitulo" />
+
+    <Button
+        android:id="@+id/voltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="132dp"
+        android:text="voltar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.744" />
+        app:layout_constraintTop_toBottomOf="@+id/textNome" />
 </androidx.constraintlayout.widget.ConstraintLayout>

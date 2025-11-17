@@ -8,38 +8,42 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:ems="10"
-        android:hint="nome"
+        android:hint="Nome"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/listView"
-        app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTitulo"
+        tools:layout_editor_absoluteX="16dp" />
 
-    <Button
-        android:id="@+id/button"
+    <EditText
+        android:id="@+id/editTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
+        android:ems="10"
+        android:hint="Titulo"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/editNome"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/aperte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="aperte"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editText"
-        tools:layout_editor_absoluteY="80dp" />
+        tools:layout_editor_absoluteY="61dp" />
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="409dp"
-        android:layout_height="550dp"
+        android:layout_width="410dp"
+        android:layout_height="539dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/editNome" />
 </androidx.constraintlayout.widget.ConstraintLayout>
