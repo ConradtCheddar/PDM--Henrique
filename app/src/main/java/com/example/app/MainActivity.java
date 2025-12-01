@@ -20,6 +20,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
@@ -41,12 +42,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Sensor sensor = sm.getDefaultSensor(Sensor.TYPE_LIGHT);
         sm.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-        list<Sensor> sensorlist = sm.getSensorList(Sensor.TYPE_ALL);
+        List<Sensor> sensorlist = sm.getSensorList(Sensor.TYPE_ALL);
         ArrayList<String> listNameSensor = new ArrayList<>();
         for (Sensor s: sensorlist){
             listNameSensor.add(s.getName());
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,listView)
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listNameSensor);
+        listView.setAdapter(adapter);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
